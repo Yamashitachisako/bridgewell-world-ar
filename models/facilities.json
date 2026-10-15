@@ -1,0 +1,9 @@
+{
+  "exportScale": 0.015,
+  "facilities": [
+    {"id": "kids", "name": "BridgeWell Kids", "description": "子どもの学びと成長を支える施設。学校と遊び場。", "color": "#FFC773", "order": 1, "position": [-0.076368, 0, 0.076368]},
+    {"id": "senior", "name": "BridgeWell Senior", "description": "高齢者の健康と生活を支える施設。地域交流と健康づくりの場。", "color": "#8CD19E", "order": 2, "position": [0.076368, 0, 0.076368]},
+    {"id": "recovery", "name": "BridgeWell Recovery", "description": "日常生活動作とリハビリテーションを支援する回復支援センター。", "color": "#B89EF2", "order": 3, "position": [0.076368, 0, -0.076368]},
+    {"id": "xlab", "name": "BridgeWell X Lab", "description": "3Dプリンター、センサー、AI、XRを活用した研究開発ラボ。", "color": "#73BFFF", "order": 4, "position": [-0.076368, 0, -0.076368]}
+  ]
+}

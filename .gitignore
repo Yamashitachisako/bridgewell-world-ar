@@ -1,0 +1,8 @@
+# Local-only helper (not needed on the public site)
+start-local-server.bat
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp

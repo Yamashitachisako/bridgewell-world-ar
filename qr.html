@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BridgeWell QRコード</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <style>
+    .qr-wrap { max-width: 520px; margin: 16px auto; padding: 0 16px; text-align: center; }
+    .qr-card { padding: 20px; border-radius: 18px; background: #fff; box-shadow: 0 2px 12px #8aa3c733; }
+    #qr svg { width: 100%; max-width: 320px; height: auto; }
+    .qr-wrap input { width: 100%; margin-top: 12px; padding: 10px 12px; border: 1px solid #c9cdea; border-radius: 12px; font: inherit; font-size: 0.9rem; }
+    .qr-wrap p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+    .url { word-break: break-all; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1>BridgeWell World</h1>
+    <p>スマートフォンで読み取ってください</p>
+  </header>
+  <main class="qr-wrap">
+    <div class="qr-card">
+      <div id="qr" role="img" aria-label="ビューアのQRコード"></div>
+      <div class="url" id="urlText"></div>
+    </div>
+    <label for="url"><p>QRコードにするURL（公開後のURLに書き換えられます）</p></label>
+    <input id="url" type="url" inputmode="url" autocomplete="off">
+    <p>ARはHTTPSで公開したページでのみ動作します。<br>パソコンのローカル確認（http://192.168…）では3D表示のみになります。</p>
+    <p><a href="index.html">← ビューアに戻る</a></p>
+  </main>
+  <script>
+    const input = document.getElementById('url');
+    const box = document.getElementById('qr');
+    const urlText = document.getElementById('urlText');
+    // Default: the viewer page next to this file
+    input.value = new URL('index.html', location.href).href;
+
+    function render() {
+      const value = input.value.trim();
+      urlText.textContent = value;
+      if (!value) { box.innerHTML = ''; return; }
+      const qr = qrcode(0, 'M');
+      qr.addData(value);
+      qr.make();
+      box.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
+    }
+    input.addEventListener('input', render);
+    render();
+
+    // "localhost" only works on this PC; warn so the phone gets a reachable address
+    if (['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) {
+      const warn = document.createElement('p');
+      warn.className = 'ar-note';
+      warn.textContent = 'localhost はスマホから開けません。start-local-server.bat に表示される http://192.168… のURLでこのページを開き直すか、上の欄にそのURLを入力してください。';
+      document.querySelector('.qr-card').after(warn);
+    }
+  </script>
+</body>
+</html>
