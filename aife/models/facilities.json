@@ -1,0 +1,9 @@
+{
+  "exportScale": 0.013,
+  "facilities": [
+    {"id": "kids", "name": "BridgeWell Kids", "description": "A place where children learn, play and grow together, with a school, a playground and a learning garden.", "color": "#FFC773", "order": 1, "position": [-0.066185, 0, 0.066185]},
+    {"id": "senior", "name": "BridgeWell Senior", "description": "A place for older adults to connect, stay active and enjoy healthy living, with a community hall, an exercise area and a shaded garden.", "color": "#8CD19E", "order": 2, "position": [0.066185, 0, 0.066185]},
+    {"id": "recovery", "name": "BridgeWell Recovery", "description": "Supports rehabilitation and a safe return to daily life at home, with an accessible home model and caregiver support.", "color": "#B89EF2", "order": 3, "position": [0.066185, 0, -0.066185]},
+    {"id": "xlab", "name": "BridgeWell X Lab", "description": "A research and development studio for AI, XR and robotics, using 3D printing, sensors and drones.", "color": "#73BFFF", "order": 4, "position": [-0.066185, 0, -0.066185]}
+  ]
+}

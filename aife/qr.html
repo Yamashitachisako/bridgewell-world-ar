@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BridgeWell World · AIFE 2026 QR code</title>
+  <link rel="stylesheet" href="css/aife.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <style>
+    .qr-wrap { max-width: 520px; margin: 16px auto; padding: 0 16px; text-align: center; }
+    .qr-card { padding: 20px; border-radius: 18px; background: #fff; box-shadow: 0 2px 12px #8aa3c733; }
+    #qr svg { width: 100%; max-width: 320px; height: auto; }
+    .qr-wrap input { width: 100%; margin-top: 12px; padding: 10px 12px; border: 1px solid #c9cdea; border-radius: 12px; font: inherit; font-size: 0.9rem; }
+    .qr-wrap p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+    .url { word-break: break-all; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <p class="badge">AIFE 2026 · Singapore</p>
+    <h1>BridgeWell World</h1>
+    <p class="tagline">Scan with your phone camera</p>
+  </header>
+  <main class="qr-wrap">
+    <div class="qr-card">
+      <div id="qr" role="img" aria-label="QR code for the BridgeWell World AIFE page"></div>
+      <div class="url" id="urlText"></div>
+    </div>
+    <label for="url"><p>URL for the QR code (you can replace it with the published URL)</p></label>
+    <input id="url" type="url" inputmode="url" autocomplete="off">
+    <p>AR works only on the published HTTPS page.<br>On a local preview (http://192.168…) the town is shown in 3D only.</p>
+    <p><a href="./">← Back to the 3D view</a></p>
+  </main>
+  <script>
+    const input = document.getElementById('url');
+    const box = document.getElementById('qr');
+    const urlText = document.getElementById('urlText');
+    // Default: this AIFE page's folder URL (…/aife/)
+    input.value = new URL('./', location.href).href;
+
+    function render() {
+      const value = input.value.trim();
+      urlText.textContent = value;
+      if (!value) { box.innerHTML = ''; return; }
+      const qr = qrcode(0, 'M');
+      qr.addData(value);
+      qr.make();
+      box.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
+    }
+    input.addEventListener('input', render);
+    render();
+
+    // "localhost" only works on this PC; warn so the phone gets a reachable address
+    if (['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) {
+      const warn = document.createElement('p');
+      warn.className = 'ar-note';
+      warn.textContent = 'Phones cannot open "localhost". Reopen this page with the http://192.168… address shown by start-local-server.bat, or type that address above.';
+      document.querySelector('.qr-card').after(warn);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#cfe6fb">
+  <title>BridgeWell World · AIFE 2026</title>
+  <meta name="description" content="Explore BridgeWell World, a small future town where everyone connects, in 3D and AR. Exhibited at AIFE 2026, Singapore.">
+  <link rel="stylesheet" href="css/aife.css">
+  <!-- Google model-viewer: 3D view + AR (Android: WebXR / Scene Viewer, iPhone: Quick Look with the USDZ file) -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body>
+  <header class="top">
+    <p class="badge">AIFE 2026 · Singapore</p>
+    <h1>BridgeWell World</h1>
+    <p class="tagline">A small future town where everyone connects</p>
+  </header>
+
+  <main class="stage">
+    <model-viewer id="town"
+      src="models/bridgewell_aife.glb"
+      ios-src="models/bridgewell_aife.usdz"
+      alt="BridgeWell World: a floating island town with a central tree and areas for kids, seniors, recovery and research"
+      camera-controls
+      touch-action="pan-y"
+      camera-orbit="12deg 62deg 85%"
+      min-camera-orbit="auto 5deg 40%"
+      max-camera-orbit="auto 88deg 200%"
+      field-of-view="30deg"
+      interaction-prompt="auto"
+      shadow-intensity="0.7"
+      shadow-softness="0.9"
+      exposure="1.05"
+      tone-mapping="neutral"
+      environment-image="neutral"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      ar-scale="auto"
+      ar-placement="floor"
+      loading="eager">
+
+      <div class="progress" slot="progress-bar"><div class="progress-fill"></div></div>
+
+      <button class="ar-button" slot="ar-button" type="button">
+        <span aria-hidden="true">📱</span> View in AR
+      </button>
+    </model-viewer>
+
+    <p class="hint" id="hint">Drag to rotate · Pinch to zoom</p>
+    <p class="ar-note" id="arNote" hidden>AR is not available on this device or browser. You can still explore the town in 3D.</p>
+  </main>
+
+  <section class="panel" aria-labelledby="areasTitle">
+    <div class="panel-head">
+      <h2 id="areasTitle">Explore the town</h2>
+      <button type="button" class="reset" id="resetView">Full view</button>
+    </div>
+    <ul class="facilities" id="facilityList">
+      <!-- Generated from models/facilities.json -->
+    </ul>
+  </section>
+
+  <section class="panel how" aria-labelledby="howTitle">
+    <h2 id="howTitle">How to view in AR</h2>
+    <ol>
+      <li>Tap <strong>View in AR</strong>.</li>
+      <li>Point your camera at a table or the floor and move your phone slowly.</li>
+      <li>Place the town, then pinch to resize and walk around it.</li>
+    </ol>
+    <p class="small">Works on iPhone/iPad (Safari) and on ARCore-supported Android phones (Chrome).</p>
+  </section>
+
+  <footer class="foot">
+    <a href="qr.html">Show QR code</a>
+    <span>BridgeWell World · AIFE 2026 edition</span>
+  </footer>
+
+  <script src="js/aife.js" type="module"></script>
+</body>
+</html>
